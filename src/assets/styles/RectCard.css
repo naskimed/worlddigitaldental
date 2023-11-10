@@ -1,0 +1,85 @@
+/* src/styles.css */
+.rectangle {
+    width: 200px;
+    height: 100px;
+    background-color: #14939C;
+    color: #fff;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    border: 2px solid #2424242d;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+  }
+  
+  .rectangle:hover {
+    background-color: #45c5ce;
+  }
+  
+  .link {
+    color: #fff;
+    text-decoration: none;
+  }
+  
+  #NCHover {
+    background-color: #ffffff;
+  }
+
+  #NCHover:hover {
+    background-color: #45c5ce;
+    color : #fff;
+  }
+
+  #submitbuttonNC {
+    background-color: #14939C;
+  }
+
+  #submitbuttonNC:hover {
+    background-color: #45c5ce;
+    color : #fff;
+  }
+
+  .coming-soon-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 70vh;
+  }
+  
+  .coming-soon-content {
+    text-align: center;
+    background-color: #fff; /* Content background color */
+    padding: 50px;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+  }
+  
+  h1 {
+    font-size: 2.5rem;
+    color: #333; /* Heading color */
+    margin-bottom: 10px;
+  }
+  
+  p {
+    font-size: 1.2rem;
+    color: #555; /* Text color */
+  }
+  
+  #imageSafetyGuide{
+    max-width: 700px; /* Adjust the value as needed */}
+
+  @media (max-width: 768px) {
+    #imageSafetyGuide {
+      max-width: 450px; /* Adjust the value as needed */
+    }
+  }
+  
+  /* Media query for screens with a maximum width of 480px */
+  @media (max-width: 480px) {
+    #imageSafetyGuide {
+      max-width: 400px; /* Adjust the value as needed */
+    }
+  }

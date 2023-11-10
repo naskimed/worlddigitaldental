@@ -1,0 +1,59 @@
+
+/* Base styling for the message card */
+#bg-white {
+    background-color: #ffffff; /* White background color */
+    padding: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Soft shadow */
+    border-radius: 10px; /* Rounded corners */
+  }
+  
+  /* Styling for the header of the message card */
+  #bg-white h2 {
+    font-size: 1.5rem; /* 24px font size */
+    font-weight: bold;
+    margin-bottom: 10px;
+  }
+  
+  /* Styling for form labels */
+  #bg-white label {
+    display: block;
+    color: #4a5568; /* Gray text color */
+    font-weight: bold;
+    margin-bottom: 8px;
+  }
+  
+  /* Styling for text input fields */
+  #bg-white input[type="text"],
+  #bg-white textarea {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #bdbdbd; /* Light gray border */
+    border-radius: 8px; /* Rounded corners */
+    margin-bottom: 16px;
+    transition: border-color 0.3s ease-in-out;
+    font-size: 16px;
+  }
+  
+  /* Styling for focused input fields */
+  #bg-white input[type="text"]:focus,
+  #bg-white textarea:focus {
+    outline: none;
+    border-color: #14939C; /* Soft green border color on focus */
+  }
+  
+  /* Styling for the send button */
+  #bg-white button {
+    background-color: #14939C; /* Soft green button color */
+    color: #ffffff; /* White text color */
+    padding: 12px 40px;
+    border: none;
+    border-radius: 5px; /* Rounded corners */
+    cursor: pointer;
+    transition: background-color 0.3s ease-in-out;
+  }
+  
+  /* Styling for hover effect on the send button */
+  #bg-white button:hover {
+    background-color: #52c1c9; /* Darker green on hover */
+  }
+  
