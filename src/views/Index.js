@@ -1,12 +1,72 @@
 /*eslint-disable*/
-import React from "react";
+import React,{ useState } from "react";
 import { Link } from "react-router-dom";
-
 import IndexNavbar from "components/Navbars/IndexNavbar.js";
 import Footer from "components/Footers/Footer.js";
-import { black } from "tailwindcss/colors";
+import axios from 'axios';
 
 export default function Index() {
+
+  const [isFormValid, setIsFormValid] = useState(true);
+  const [formError, setFormError] = useState(false); // New state variable for form errors
+
+  const [formData, setFormData] = useState({
+    name: '',
+    email: '',
+    message: '',
+  });
+
+  const handleChange = (event) => {
+    const { name, value } = event.target;
+    setFormData({
+      ...formData,
+      [name]: value,
+    });  };
+
+  const validateForm = () => {
+    const {
+      name,
+      email,
+      message,
+
+    } = formData;
+  
+    const requiredFields = [
+      name,
+      email,
+      message,
+    ];
+
+  
+    const isFormValid = requiredFields.every((field) => field.trim() !== '');
+    setIsFormValid(isFormValid);
+  
+    return isFormValid;
+  };
+  
+  const handleSubmit = async () => {
+    if (validateForm()) {
+      try {
+        // You may want to replace the URL with your actual API endpoint
+        const response = await axios.post('/dashboard', formData);
+
+        if (response.status === 200) {
+          // Handle a successful submission, e.g., show a success message, redirect, etc.
+          console.log('Form submitted successfully');
+          history.push('/dashboard');
+        } 
+      } catch (error) {
+        // Handle errors related to the API request
+        console.error('An error occurred during form submission:', error);
+      }
+    }
+    else {
+      // If the form is not valid, set formError to true
+      setFormError(true);
+    }    
+  };  
+
+
   return (
     <>
       <IndexNavbar fixed />
@@ -198,7 +258,7 @@ export default function Index() {
                   <h5 className="text-xl font-semibold pb-4 text-center">
                     Guide chirurgical
                   </h5>
-                  <Link to="">
+                  <Link to="/chirgurie_guidee">
                     <div className="hover:-mt-4 relative flex flex-col min-w-0 break-words bg-white w-full mb-6 shadow-lg rounded-lg ease-linear transition-all duration-150">
                       <img
                         alt="..."
@@ -228,7 +288,7 @@ export default function Index() {
                   <h5 className="text-xl font-semibold pb-4 text-center">
                     Aligneurs
                   </h5>
-                  <Link to="">
+                  <Link to="/aligneurs">
                     <div className="hover:-mt-4 relative flex flex-col min-w-0 break-words bg-white w-full mb-6 shadow-lg rounded-lg ease-linear transition-all duration-150">
                       <img
                         alt="..."
@@ -262,8 +322,7 @@ export default function Index() {
               L’intérêt du guide chirurgical pour la pose des implants, même unitaire, est sans équivoque. En effet, il offre un maximum de précision et de sécurité. 
               </p>
               <a
-                href=""
-                target="_blank"
+                href="/chirgurie_guidee"
                 className="github-star mt-4 inline-block text-white font-bold px-6 py-4 rounded outline-none focus:outline-none mr-1 mb-1 bg-blueGray-700 active:bg-blueGray-600 uppercase text-sm shadow hover:shadow-lg"
               >
                 Lire la suite
@@ -336,29 +395,53 @@ export default function Index() {
               </a>
             </div>
             <div className="text-center mt-16">
-              <div className="contact-field mb-4">
-                <input
-                  type="text"
-                  placeholder="Votre nom"
-                  className="contact-input w-full px-4 py-3 rounded-lg shadow-md focus:outline-none focus:ring-2 focus:ring-lightBlue-500 focus:ring-opacity-50"
-                />
-              </div>
-              <div className="contact-field mb-4">
-                <input
-                  type="Email"
-                  placeholder="Votre Email"
-                  className="contact-input w-full px-4 py-3 rounded-lg shadow-md focus:outline-none focus:ring-2 focus:ring-lightBlue-500 focus:ring-opacity-50"
-                />
-              </div>
-              <div className="contact-field mb-4">
-                <textarea
-                  placeholder="Votre message"
-                  className="contact-input w-full px-4 py-3 rounded-lg shadow-md focus:outline-none focus:ring-2 focus:ring-lightBlue-500 focus:ring-opacity-50"
-                ></textarea>
-              </div>
-              <button className="contact-button bg-lightBlue-600 hover:bg-lightBlue-600 text-white font-bold px-6 py-4 rounded-lg mt-4 transition-all duration-300 ease-in-out transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-lightBlue-500 focus:ring-opacity-50">
-              Envoyer le message
-              </button>
+                  <div className="contact-field mb-4">
+                    <input
+                      id="name"
+                      type="text"
+                      name="name"
+                      value = {formData.name}
+                      placeholder="Votre nom"
+                      className="contact-input w-full px-4 py-3 rounded-lg shadow-md focus:outline-none focus:ring-2 focus:ring-lightBlue-500 focus:ring-opacity-50"
+                      onChange={handleChange}
+                    />
+                  </div>
+                  <div className="contact-field mb-4">
+                    <input
+                      id="email"
+                      type="email"
+                      name="email"
+                      value={formData.email}
+                      placeholder="Votre Email"
+                      className="contact-input w-full px-4 py-3 rounded-lg shadow-md focus:outline-none focus:ring-2 focus:ring-lightBlue-500 focus:ring-opacity-50"
+                      onChange={handleChange}
+                    />
+                  </div>
+                  <div className="contact-field mb-4">
+                    <textarea
+                      id="message"
+                      name="message"
+                      value={formData.message}
+                      placeholder="Votre message"
+                      className="contact-input w-full px-4 py-3 rounded-lg shadow-md focus:outline-none focus:ring-2 focus:ring-lightBlue-500 focus:ring-opacity-50"
+                      onChange={handleChange}
+                    ></textarea>
+                  </div>
+                  <br></br>
+                  {formError && (
+                  <div className="text-red-500 text-s">
+                      Veuillez remplir tous les champs obligatoires avant de soumettre.
+                  </div>
+                  )}
+
+                  <button 
+                  type="submit" 
+                  className="contact-button bg-lightBlue-600 hover:bg-lightBlue-600 text-white font-bold px-6 py-4 rounded-lg mt-4 transition-all duration-300 ease-in-out transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-lightBlue-500 focus:ring-opacity-50"
+                  onClick={handleSubmit}
+                  id="submitbutton"
+                  >
+                    Envoyer le message
+                  </button>
             </div>
           </div>
         </div>

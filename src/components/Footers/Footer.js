@@ -10,7 +10,6 @@ export default function Footer() {
         >
           <svg
             className="absolute bottom-0 overflow-hidden"
-            xmlns="http://www.w3.org/2000/svg"
             preserveAspectRatio="none"
             version="1.1"
             viewBox="0 0 2560 100"
@@ -62,7 +61,7 @@ export default function Footer() {
                     <li>
                       <a
                         className="text-blueGray-600 hover:text-blueGray-800 font-semibold block pb-2 text-sm"
-                        href=""
+                        href="/"
                       >
                         Acceuil
                       </a>
@@ -70,7 +69,7 @@ export default function Footer() {
                     <li>
                       <a
                         className="text-blueGray-600 hover:text-blueGray-800 font-semibold block pb-2 text-sm"
-                        href=""
+                        href="/"
                       >
                         À propos de nous
                       </a>
@@ -78,7 +77,7 @@ export default function Footer() {
                     <li>
                       <a
                         className="text-blueGray-600 hover:text-blueGray-800 font-semibold block pb-2 text-sm"
-                        href=""
+                        href="/aligneurs"
                       >
                         Aligneurs
                       </a>
@@ -86,7 +85,7 @@ export default function Footer() {
                     <li>
                       <a
                         className="text-blueGray-600 hover:text-blueGray-800 font-semibold block pb-2 text-sm"
-                        href=""
+                        href="/guide_chirurgical"
                       >
                         Guide chirurgical
                       </a>
@@ -101,7 +100,7 @@ export default function Footer() {
                     <li>
                       <a
                         className="text-blueGray-600 hover:text-blueGray-800 font-semibold block pb-2 text-sm"
-                        href=""
+                        href="/contact"
                       >
                         Contactez-nous
                       </a>
@@ -123,11 +122,11 @@ export default function Footer() {
                       </a>
                     </li>
                     <li>
-                      <a
+                      <span
                         className="text-blueGray-600 hover:text-blueGray-800 font-semibold block pb-2 text-sm"
                       >
                         Tel : +216 70 80 90 00
-                      </a>
+                      </span>
                     </li>
                   </ul>
                 </div>
@@ -139,12 +138,11 @@ export default function Footer() {
             <div className="w-full md:w-4/12 px-4 mx-auto text-center">
               <div className="text-sm text-blueGray-500 font-semibold py-1">
                 Copyright © 
-                <a
-                  href="https://www.creative-tim.com?ref=nr-footer"
+                <span
                   className="text-blueGray-500 hover:text-blueGray-800"
                 >
                   2023 Nas
-                </a>
+                </span>
                 
               </div>
             </div>

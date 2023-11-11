@@ -1,6 +1,8 @@
 import IndexNavbar from "components/Navbars/IndexNavbar.js";
 import Footer from "components/Footers/Footer.js";
 import React, { useState } from 'react';
+import { useHistory } from 'react-router-dom'
+import axios from 'axios';
 
 function Contact() {
   const [formData, setFormData] = useState({
@@ -17,11 +19,30 @@ function Contact() {
     });
   };
 
-  const handleSubmit = (e) => {
+  const history = useHistory();
+
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    // Handle form submission logic here
-    console.log('Form data:', formData);
-    // You can send the data to your server or perform any other necessary actions.
+    try {
+      // You may want to replace the URL with your actual API endpoint
+      const response = await axios.post('/dashboard', formData);
+
+      if (response.status === 200) {
+        // Handle a successful submission, e.g., show a success message, redirect, etc.
+        console.log('Form submitted successfully');
+        history.push('/contact');
+      } 
+    } catch (error) {
+      // Handle errors related to the API request
+      console.error('An error occurred during form submission:', error);
+
+      // reset the form if the request failed
+      setFormData({
+        name: '',
+        email: '',
+        message: '',
+      });
+    } 
   };
 
   return (

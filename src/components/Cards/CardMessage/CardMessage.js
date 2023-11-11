@@ -4,6 +4,7 @@ import "./CardMessage.css";
 const MessageForm = () => {
   const [subject, setSubject] = useState("");
   const [message, setMessage] = useState("");
+  const [error, setError] = useState("");
 
   const handleSubjectChange = (e) => {
     setSubject(e.target.value);
@@ -14,6 +15,15 @@ const MessageForm = () => {
   };
 
   const handleSendClick = () => {
+    // Validation
+    if (!subject || !message) {
+      setError("Veuillez remplir tous les champs.");
+      return;
+    }
+
+    // Reset previous error
+    setError("");
+
     // Handle sending the message (you can implement this part)
     console.log("Subject:", subject);
     console.log("Message:", message);
@@ -25,15 +35,16 @@ const MessageForm = () => {
 
   return (
     <div className="bg-white p-4 shadow-lg rounded-lg" id="bg-white">
-        <div className="rounded-t bg-white mb-0 px-6 py-6"
-        style={{backgroundColor:"#14939C15"}}
+      <div
+        className="rounded-t bg-white mb-0 px-6 py-6"
+        style={{ backgroundColor: "#14939C15" }}
         id="bg-white"
-        >
-          <div className="text-center flex justify-between">
-            <h6 className="text-blueGray-700 text-xl font-bold">Nouveau message</h6>
-          </div>
+      >
+        <div className="text-center flex justify-between">
+          <h6 className="text-blueGray-700 text-xl font-bold">Nouveau message</h6>
         </div>
-      <br></br>
+      </div>
+      <br />
       <div className="mb-6">
         <label htmlFor="subject" className="block text-gray-700 font-bold mb-2">
           Sujet
@@ -58,6 +69,10 @@ const MessageForm = () => {
           onChange={handleMessageChange}
         ></textarea>
       </div>
+
+      {/* Error message */}
+      {error && <div className="text-red-500">{error}</div>}
+
       <button
         className="bg-blue-500 text-white px-6 py-3 rounded-md hover:bg-blue-600"
         onClick={handleSendClick}

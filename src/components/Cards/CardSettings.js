@@ -1,8 +1,56 @@
-import React from "react";
+import React ,{ useState, useEffect } from "react";
 
 // components
 
 export default function CardSettings() {
+
+  const [userData, setUserData] = useState({
+    username: '',
+    email: '',
+    firstName: '',
+    lastName: '',
+    address: '',
+    city: '',
+    country: '',
+    taxId: '',
+    phoneNumber: '',
+    workNumber: '',
+  });
+
+  const [disabledFields, setDisabledFields] = useState(['username', 'email', 'firstName', 'lastName','taxId']);
+
+  useEffect(() => {
+    // Fetch user data from the database and update the state
+    // Replace the following with your actual API endpoint
+    fetch('YOUR_API_ENDPOINT')
+      .then((response) => response.json())
+      .then((data) => setUserData(data))
+      .catch((error) => console.error('Error fetching user data:', error));
+  }, []); // Empty dependency array to run the effect only once on mount
+
+  const handleChange = (e) => {
+    setUserData({
+      ...userData,
+      [e.target.name]: e.target.value,
+    });
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    // Send the modified data to the backend for updating in the database
+    // Use the fetch API or your preferred method for making API requests
+    fetch('YOUR_API_ENDPOINT', {
+      method: 'PUT', // or 'POST' depending on your API
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(userData),
+    })
+      .then((response) => response.json())
+      .then((data) => console.log('Data updated successfully:', data))
+      .catch((error) => console.error('Error updating data:', error));
+  };
+
   return (
     <>
       <div className="relative flex flex-col min-w-0 break-words w-full mb-6 shadow-lg rounded-lg bg-blueGray-100 border-0">
@@ -12,7 +60,7 @@ export default function CardSettings() {
           </div>
         </div>
         <div className="flex-auto px-4 lg:px-10 py-10 pt-0">
-          <form>
+          <form onSubmit={handleSubmit}>
             <h6 className="text-blueGray-400 text-sm mt-3 mb-6 font-bold uppercase">
             Informations de l'utilisateur
             </h6>
@@ -27,6 +75,10 @@ export default function CardSettings() {
                   </label>
                   <input
                     type="text"
+                    name="username"
+                    value={userData.username}
+                    onChange={handleChange}
+                    disabled={disabledFields.includes('username')}
                     className="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
                     defaultValue="Foulen.Fouleni"
                   />
@@ -42,6 +94,8 @@ export default function CardSettings() {
                   </label>
                   <input
                     type="email"
+                    name="email"
+                    value={userData.email}
                     className="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
                     defaultValue="foulen.fouleni@example.com"
                   />
@@ -57,6 +111,9 @@ export default function CardSettings() {
                   </label>
                   <input
                     type="text"
+                    name="firstName"
+                    value={userData.firstName}
+                    disabled={disabledFields.includes('firstName')}
                     className="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
                     defaultValue="Fouleni"
                   />
@@ -72,6 +129,9 @@ export default function CardSettings() {
                   </label>
                   <input
                     type="text"
+                    name="lastName"
+                    value={userData.lastName}
+                    disabled={disabledFields.includes('lastName')}
                     className="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
                     defaultValue="Foulen"
                   />
@@ -95,6 +155,8 @@ export default function CardSettings() {
                   </label>
                   <input
                     type="text"
+                    name="address"
+                    value={userData.address}
                     className="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
                     defaultValue="Sousse, KPI 1.5km, Immeuble 1, 2ème étage, Appartement 3"
                   />
@@ -109,7 +171,9 @@ export default function CardSettings() {
                     Ville
                   </label>
                   <input
-                    type="email"
+                    type="text"
+                    name="city"
+                    value={userData.city}
                     className="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
                     defaultValue="Sousse"
                   />
@@ -125,6 +189,8 @@ export default function CardSettings() {
                   </label>
                   <input
                     type="text"
+                    name="country"
+                    value={userData.country}
                     className="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
                     defaultValue="Tunisia"
                   />
@@ -140,6 +206,9 @@ export default function CardSettings() {
                   </label>
                   <input
                     type="text"
+                    name="taxId"
+                    value={userData.taxId}
+                    disabled={disabledFields.includes('taxId')}
                     className="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
                     defaultValue=".................. / .... / .... / 000"
                   />
@@ -165,6 +234,8 @@ export default function CardSettings() {
                 </label>
                 <input
                   type="text"
+                  name="phoneNumber"
+                  value={userData.phoneNumber}
                   id="telephoneNumber"
                   placeholder="50 00 00 00"
                   className="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
@@ -183,6 +254,8 @@ export default function CardSettings() {
                 </label>
                 <input
                   type="text"
+                  name="workNumber"
+                  value={userData.workNumber}
                   id="workNumber"
                   placeholder="70 00 00 00"
                   className="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
@@ -191,7 +264,6 @@ export default function CardSettings() {
             </div>
           </div>
 
-          </form>
           
           <br/>
 
@@ -203,6 +275,7 @@ export default function CardSettings() {
               Confirmer
             </button>
           </div>
+          </form>
         </div>
       </div>
     </>
