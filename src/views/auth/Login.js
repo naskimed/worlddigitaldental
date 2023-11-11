@@ -1,7 +1,43 @@
-import React from "react";
+import React, {useState} from "react";
 import { Link } from "react-router-dom";
+import axios from 'axios';
+
+
 
 export default function Login() {
+
+  const [password, setPassword] = useState('');
+  const [error, setError] = useState('');
+  const [email, setEmail] = useState("");
+  const [isValidEmail, setIsValidEmail] = useState(true);
+
+  const handleEmailChange = (e) => {
+    const enteredEmail = e.target.value;
+    setEmail(enteredEmail);
+
+    // Regular expression for a simple email validation
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    setIsValidEmail(emailRegex.test(enteredEmail));
+  };
+
+  const handleLogin = async () => {
+    try {
+      const response = await axios.post('/api/login', { email, password });
+
+      // Assuming your server sends an error message in case of authentication failure
+      if (response.data.error) {
+        setError(response.data.error);
+      } else {
+        // Handle the successful login, e.g., show a success message, redirect, set user authentication status, etc.
+        console.log('Login successful');
+      }
+    } catch (error) {
+      // Handle network errors or other unexpected issues
+      console.error('Login failed:', error.message);
+      setError('La connexion a échoué. Veuillez réessayer.');
+    }
+  };
+
   return (
     <>
       <div className="container mx-auto px-4 h-full">
@@ -34,10 +70,17 @@ export default function Login() {
                       Email
                     </label>
                     <input
-                      type="email"
-                      className="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
+                      onChange={handleEmailChange}
+                      value={email}
+                      type="text" // Change to "text" for illustration purposes
+                      className={`border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150 ${
+                        !isValidEmail && "border-red-500" // Add a red border for invalid email
+                      }`}                      
                       placeholder="Email"
                     />
+                  {!isValidEmail && (
+                  <p className="text-red-500 text-xs mt-1">Invalid email format</p>
+                  )}
                   </div>
 
                   <div className="relative w-full mb-3">
@@ -48,7 +91,9 @@ export default function Login() {
                       Mot de passe
                     </label>
                     <input
-                      type="Mot de passe"
+                      type="password"
+                      onChange={(e) => setPassword(e.target.value)}
+                      value={password}
                       className="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
                       placeholder="Password"
                     />
@@ -66,10 +111,15 @@ export default function Login() {
                     </label>
                   </div>
 
+                  <br></br>
+                  <div className="text-red-500">{error}</div>
+                  <br></br>
+
                   <div className="text-center mt-6">
                     <button
                       className="bg-blueGray-800 text-white active:bg-blueGray-600 text-sm font-bold uppercase px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 w-full ease-linear transition-all duration-150"
                       type="button"
+                      onClick={handleLogin}
                       style={{
                       backgroundColor: '#14939C',
                     }}

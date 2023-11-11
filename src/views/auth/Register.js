@@ -1,8 +1,88 @@
-import React from "react";
+import React,{ useState } from "react";
 import PhoneInput from "react-phone-input-2";
 import "react-phone-input-2/lib/bootstrap.css";
+import axios from "axios";
 
 export default function Register() {
+
+    const [formData, setFormData] = useState({
+      nom: "",
+      prenom: "",
+      sexe: "M",
+      occupation: "Dentiste",
+      email: "",
+      telFixe: "",
+      mobile: "",
+      adresse: "",
+      ville: "",
+      pays: "",
+      matricule: "",
+      username: "",
+      password: "",
+      confirmPassword: "",
+    });
+  
+    const [error, setError] = useState("");
+    const [successMessage, setSuccessMessage] = useState("");
+    const [email, setEmail] = useState("");
+    const [isValidEmail, setIsValidEmail] = useState(true);
+  
+    const handleEmailChange = (e) => {
+      const enteredEmail = e.target.value;
+      setEmail(enteredEmail);
+  
+      // Regular expression for a simple email validation
+      const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+      setIsValidEmail(emailRegex.test(enteredEmail));
+    };
+  
+  
+    const handleChange = (e) => {
+      if (e.target.type === "radio") {
+        // For radio buttons, set the value directly
+        setFormData({
+          ...formData,
+          [e.target.name]: e.target.value,
+        });
+      } else {
+        // For other input types, use the name and value attributes
+        setFormData({
+          ...formData,
+          [e.target.name]: e.target.value,
+        });
+      }
+    };
+  
+    const handleSubmit = async () => {
+      try {
+        // Check if username or email already exists
+        const checkDuplicate = await axios.post(
+          "/api/check-duplicate",
+          // Send the fields that need to be checked (e.g., username, email)
+          { username: formData.username, email: formData.email }
+        );
+  
+        if (checkDuplicate.data.error) {
+          setError(checkDuplicate.data.error);
+          setSuccessMessage("");
+        } else {
+          // If no duplicates, proceed with registration
+          const response = await axios.post("/api/register", formData);
+  
+          if (response.data.success) {
+            setError("");
+            setSuccessMessage("Registration successful!");
+            // You can redirect the user or perform other actions upon successful registration
+          }
+        }
+      } catch (error) {
+        console.error("Registration failed", error);
+        setError("Registration failed. Please try again.");
+        setSuccessMessage("");
+      }
+    };
+  
+
   return (
     <>
 <div className="container mx-auto px-4 h-full">
@@ -45,6 +125,8 @@ export default function Register() {
                         type="text"
                         id="nom"
                         name="nom"
+                        value={formData.nom}
+                        onChange={handleChange}
                         className="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
                         placeholder="Nom"
                       />
@@ -61,11 +143,14 @@ export default function Register() {
                         type="text"
                         id="prenom"
                         name="prenom"
+                        value={formData.prenom}
+                        onChange={handleChange}
                         className="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
                         placeholder="Prénom"
                       />
                     </div>
 
+                    {/* Sexe Radio Buttons */}
                     <div className="relative mb-3">
                       <label
                         className="block uppercase text-blueGray-600 text-xs font-bold mb-2"
@@ -81,6 +166,8 @@ export default function Register() {
                             id="sexe-m"
                             name="sexe"
                             value="M"
+                            checked={formData.sexe === "M"}
+                            onChange={handleChange}
                           />
                         </label>
                         <label htmlFor="sexe-f">
@@ -90,11 +177,14 @@ export default function Register() {
                             id="sexe-f"
                             name="sexe"
                             value="F"
+                            checked={formData.sexe === "F"}
+                            onChange={handleChange}
                           />
                         </label>
                       </div>
                     </div>
 
+                    {/* Occupation Select */}
                     <div className="relative mb-3">
                       <label
                         className="block uppercase text-blueGray-600 text-xs font-bold mb-2"
@@ -105,6 +195,8 @@ export default function Register() {
                       <select
                         id="occupation"
                         name="occupation"
+                        value={formData.occupation}
+                        onChange={handleChange}
                         className="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
                       >
                         <option value="Dentiste">Dentiste</option>
@@ -125,12 +217,19 @@ export default function Register() {
                       Email :
                     </label>
                     <input
-                      type="email"
+                      type="text"
                       id="email"
                       name="email"
-                      className="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
+                      value={email}
+                      onChange={handleEmailChange}
+                      className={`border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150 ${
+                        !isValidEmail && "border-red-500" 
+                      }`}
                       placeholder="Email"
                     />
+                  {!isValidEmail && (
+                  <p className="text-red-500 text-xs mt-1">Invalid email format</p>
+                  )}
                   </div>
 
 
