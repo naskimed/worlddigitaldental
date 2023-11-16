@@ -3,38 +3,6 @@ import IndexNavbar from "components/Navbars/IndexNavbar.js";
 import Footer from "components/Footers/Footer.js";
 
 const Aligneurs = () => {
-  // Set the launch date in the following format: 'Month Day, Year, Hour, Minute, Second'
-  const launchDate = new Date('January 1, 2024 00:00:00').getTime();
-
-  const [timeLeft, setTimeLeft] = useState(getTimeRemaining());
-
-  useEffect(() => {
-    const countdownInterval = setInterval(() => {
-      setTimeLeft(getTimeRemaining());
-    }, 1000);
-
-    return () => {
-      clearInterval(countdownInterval);
-    };
-  }, []);
-
-  function getTimeRemaining() {
-    const now = new Date().getTime();
-    const timeRemaining = launchDate - now;
-
-    const days = Math.floor(timeRemaining / (1000 * 60 * 60 * 24));
-    const hours = Math.floor((timeRemaining % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-    const minutes = Math.floor((timeRemaining % (1000 * 60 * 60)) / (1000 * 60));
-    const seconds = Math.floor((timeRemaining % (1000 * 60)) / 1000);
-
-    return {
-      days,
-      hours,
-      minutes,
-      seconds,
-    };
-  }
-
   return (
     <>
     <IndexNavbar fixed />
@@ -45,13 +13,10 @@ const Aligneurs = () => {
           Coming Soon
         </h2>
         <p className="text-2xl text-blueGray-800 mb-8">
-          Our website is under construction.
+        Notre site internet est en construction.
         </p>
-        <div className="text-3xl text-blueGray-800 mb-8">
-          {timeLeft.days}d {timeLeft.hours}h {timeLeft.minutes}m {timeLeft.seconds}s
-        </div>
         <p className="text-blueGray-800">
-          We're launching soon! Stay tuned for exciting updates.
+        Nous lançons bientôt ! Restez à l'écoute pour des mises à jour passionnantes.
         </p>
         </div>
       </div>

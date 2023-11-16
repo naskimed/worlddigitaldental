@@ -58,6 +58,12 @@ export default function Index() {
       } catch (error) {
         // Handle errors related to the API request
         console.error('An error occurred during form submission:', error);
+        // reset the form if the request failed
+        setFormData({
+          name: '',
+          email: '',
+          message: '',
+      });
       }
     }
     else {
@@ -78,15 +84,19 @@ export default function Index() {
               <h2 className="font-semibold text-5xl text-blueGray-600" style={{ color: 'white', fontSize : '5.5rem' }}>
                 Soyez à la pointe
               </h2>
-              <p className="mt-4 text-lg leading-relaxed text-blueGray-500" style = {{color: 'white', fontSize: '1.5rem'}}>
-              Offrez a vos patients la pointe de la technologie <br/>
-              Reduisez votre temps de travail fauteuil <br/>
-              Diversifiez votre activite en omnipratique
+              <p className="mt-4 text-lg leading-relaxed text-blueGray-500" style={{ color: 'white', fontSize: '1.5rem' }}>
+                Offrez à vos patients le meilleur de la technologie <br/>
+                Optimisez la réussite de vos traitements <br/>
+                Optimisez votre rendement au fauteuil <br/>
+                Plusieurs médecins dentistes nous font confiance <br/>
+                Éliminez les aléas thérapeutiques <br/>
+                Visez l'excellence thérapeutique <br/>
               </p>
               <br/>
-              <h1 className="font-light text-3xl text-blueGray-600" style={{ color: 'white', }}>
-              Optez pour la technologie 3D, securiste et precision..
+              <h1 className="font-light text-3xl text-blueGray-600" style={{ color: 'white' }}>
+                Optez pour la technologie 3D, sécuriste et précision...
               </h1>
+
               <div className="mt-12">
                 <a
                   href="/auth/register"
@@ -99,7 +109,7 @@ export default function Index() {
                   className="github-star ml-1 text-white font-bold px-6 py-4 rounded outline-none focus:outline-none mr-1 mb-1 bg-blueGray-700 active:bg-blueGray-600 uppercase text-sm shadow hover:shadow-lg ease-linear transition-all duration-150"
                   target="_blank"
                 >
-                  Login   
+                  Se connecter   
                 </a>
               </div>
             </div>
@@ -142,14 +152,13 @@ export default function Index() {
               À propos de nous
             </h6>
             <br/>
-            <p className="mb-4 text-blueGray-500 leading-100" style={{ lineHeight: '2' }}>
+            <p className="mb-4 text-2xl text-blueGray-500 leading-100" style={{ lineHeight: '2' }}>
             WDD est upn centre de planification et d'impression 3D:
             <br/>
-            WDD a pour objectif de democratiser l'utilisation du guide chirurgical pour la pose d'implants. Pour cela, l'equipe consitituee d'ingenieurs, de dentistes et de prothesistes utilise deux leviers: 
-            Un flux numerique rapide et intutif, et des prix suffisamment bas pour permettre l'utilisation d'un guide chirgical dans l'integralite des cas.
+            WDD a pour objectif de démocratiser l'utilisation du guide chirurgical pour la pose d'implants. Pour cela, l'équipe constituée d'ingénieurs, de dentistes et de prothésistes utilise deux leviers :
+            Un flux numérique rapide et intuitif.
             <br/>
-            Posez vos implants a la perfection en passant a la chirurgie guidee
-            Safety Guide vous permet d'accedez a la chirurgie implantaire guidee: securite, precision et simplicite pour tous.
+              Posez vos implants à la perfection en passant à la chirurgie guidée. Safety Guide vous permet d'accéder à la chirurgie implantaire guidée : sécurité, précision et simplicité pour tous.
             <br/>
             </p>
           </div>
@@ -157,7 +166,7 @@ export default function Index() {
         </div>
 
 
-        <div className="container mx-auto px-4 pb-32 pt-48">
+        <div className="container mx-auto px-4 pb-32 pt-48" style={{paddingTop: "3rem", paddingBottom: "-5rem"}}>
           <div className="items-center flex flex-wrap">
             <div className="w-full md:w-5/12 ml-auto px-12 md:px-4">
               <div className="md:pr-12">
@@ -169,14 +178,13 @@ export default function Index() {
                   />
                 </div>
                 <br/>
-                <p className="mt-4 text-lg leading-relaxed text-blueGray-500">
-                Commandez notre pack de gouttière dentaire disponible sur notre site web, 
-                le pack se compose de 03 pièces avec deux couleurs disponibles. 
-                Vous pouvez aussi les achetez séparément et par étape.
-
-
-                </p>
-                <ul className="list-none mt-6">
+                <br></br>
+                <a className="mt-6 mb-4 ml-4 font-semibold text-2xl leading-relaxed text-blueGray-500"
+                href="/aligneurs"
+                >
+                Coming Soon
+                </a>
+                {/* <ul className="list-none mt-6">
                   <li className="py-2">
                     <div className="flex items-center">
                       <div>
@@ -219,7 +227,7 @@ export default function Index() {
                       </div>
                     </div>
                   </li>
-                </ul>
+                </ul> */}
               </div>
             </div>
 
@@ -239,7 +247,7 @@ export default function Index() {
           </div>
         </div>
 
-        <div className="justify-center text-center flex flex-wrap mt-24">
+        <div className="justify-center text-center flex flex-wrap">
           <div className="w-full md:w-6/12 px-12 md:px-4">
           <p className="text-lg leading-relaxed mt-4 mb-4 text-blueGray-500">
               Nos produits sont conformes aux normes internationales
@@ -256,7 +264,7 @@ export default function Index() {
               <div className="flex justify-center items-center">
                 <div className="w-full lg:w-6/12 px-6">
                   <h5 className="text-xl font-semibold pb-4 text-center">
-                    Guide chirurgical
+                    Safety Guide
                   </h5>
                   <Link to="/chirgurie_guidee">
                     <div className="hover:-mt-4 relative flex flex-col min-w-0 break-words bg-white w-full mb-6 shadow-lg rounded-lg ease-linear transition-all duration-150">
@@ -371,11 +379,11 @@ export default function Index() {
         >
           <div className="w-full text-center lg:w-8/12">
             <h3 className="font-semibold text-3xl">
-            Vous aimez nos services?
+            Contactez Nous
             </h3>
-            <p className="text-blueGray-500 text-lg leading-relaxed mt-4 mb-4">
+            {/* <p className="text-blueGray-500 text-lg leading-relaxed mt-4 mb-4">
             Parce que si tu le fais, ça peut être le tien maintenant. Vous pouvez désormais créer un compte gratuitement
-            </p>
+            </p> */}
             <div className="sm:block flex flex-col mt-10">
               <a
                 href="/auth/register"

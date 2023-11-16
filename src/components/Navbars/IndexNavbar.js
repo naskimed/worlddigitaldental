@@ -52,7 +52,7 @@ export default function Navbar(props) {
                 className="hover:text-white text-white px-3 py-4 lg:py-2 flex items-center text-xs uppercase font-bold"
                 href="/guide_chirurgical"
               >
-                Guide chirurgical
+                Safety Guide
               </a>
             </li>
             <li className="flex items-center">
@@ -69,6 +69,14 @@ export default function Navbar(props) {
                 href="/aligneurs"
               >
                 Aligneurs
+              </a>
+            </li>
+            <li className="flex items-center">
+              <a
+                className="hover:text-white text-white px-3 py-4 lg:py-2 flex items-center text-xs uppercase font-bold"
+                href="/contact"
+              >
+                S Plus
               </a>
             </li>
             <li className="flex items-center">

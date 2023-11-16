@@ -25,9 +25,9 @@ export default function Footer() {
         <div className="container mx-auto px-4">
           <div className="flex flex-wrap text-center lg:text-left">
             <div className="w-full lg:w-6/12 px-4">
-              <h4 className="text-3xl font-semibold">Restons en contact!</h4>
+              {/* <h4 className="text-3xl font-semibold">Restons en contact!</h4> */}
               <h5 className="text-lg mt-0 mb-2 text-blueGray-600">
-              Retrouvez-nous sur l'une de ces plateformes, nous répondons sous 1 à 2 jours ouvrables.
+              Retrouvez-nous sur l'une de ces plateformes.
               </h5>
               <div className="mt-6 lg:mb-0 mb-6">
                 <button
@@ -55,9 +55,9 @@ export default function Footer() {
               <div className="flex flex-wrap items-top mb-6">
                 <div className="w-full lg:w-4/12 px-4 ml-auto">
                   <span className="block uppercase text-blueGray-500 text-sm font-semibold mb-2">
-                  Liens utiles
+                  Map
                   </span>
-                  <ul className="list-unstyled">
+                  {/* <ul className="list-unstyled">
                     <li>
                       <a
                         className="text-blueGray-600 hover:text-blueGray-800 font-semibold block pb-2 text-sm"
@@ -90,7 +90,7 @@ export default function Footer() {
                         Guide chirurgical
                       </a>
                     </li>
-                  </ul>
+                  </ul> */}
                 </div>
                 <div className="w-full lg:w-4/12 px-4">
                   <span className="block uppercase text-blueGray-500 text-sm font-semibold mb-2">
@@ -125,7 +125,7 @@ export default function Footer() {
                       <span
                         className="text-blueGray-600 hover:text-blueGray-800 font-semibold block pb-2 text-sm"
                       >
-                        Tel : +216 70 80 90 00
+                        Tel : +216 50 460 200
                       </span>
                     </li>
                   </ul>
