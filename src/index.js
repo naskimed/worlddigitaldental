@@ -19,6 +19,7 @@ import ChirGuidee from "views/ChirgurieGuidee.js";
 import Aligneurs from "views/Aligneurs.js";
 import Contact from "views/Contact.js";
 import GuideChirurgical from "views/GuideChirurgical.js";
+import SavoirPlus from "views/SavoirPlus.js";
 
 ReactDOM.render(
   <BrowserRouter>
@@ -33,6 +34,7 @@ ReactDOM.render(
       <Route path="/aligneurs" excat component={Aligneurs} />
       <Route path="/contact" excat component={Contact} />
       <Route path="/guide_chirurgical" excat component={GuideChirurgical} />
+      <Route path="/savoirplus" excat component={SavoirPlus} />
       <Route path="/" exact component={Index} />
       {/* add redirect for first page */}
       <Redirect from="*" to="/" />

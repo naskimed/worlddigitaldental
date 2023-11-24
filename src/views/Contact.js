@@ -48,17 +48,32 @@ function Contact() {
   return (
     <>
     <IndexNavbar fixed />
-    <section className="bg-gradient-to-r from-blue-500 via-blue-700 to-blue-900 relative pt-16 items-center flex flex-col h-screen max-h-1000-px" id="index-cover">
     
-    <div className="container max-w-xs text-center " style={{marginTop:"6rem"}}>
+    <section className="bg-gradient-to-r from-blue-500 via-blue-700 to-blue-900 relative pt-16 items-center max-h-screen flex flex-col" id="index-cover" style={{ marginTop: "5rem" }} >
+    
+    <div className="container mx-auto overflow-y-auto flex">
+      <div className="bg-blueGray-200 bg-opacity-90 p-8 rounded-lg shadow-lg" style={{ marginBottom:"5rem"}}>
+      <h6 className="text-3xl mb-2 font-semibold leading-normal">
+              À propos de nous
+            </h6>
+            <br/>
+            <p className="mb-4 text-xl text-blueGray-500 leading-100" style={{ lineHeight: '2' }}>
+            WDD est upn centre de planification et d'impression 3D:
+            <br/>
+            WDD a pour objectif de démocratiser l'utilisation du guide chirurgical pour la pose d'implants. Pour cela, l'équipe constituée d'ingénieurs, de dentistes et de prothésistes utilise deux leviers :
+            Un flux numérique rapide et intuitif.
+            <br/>
+              Posez vos implants à la perfection en passant à la chirurgie guidée. Safety Guide vous permet d'accéder à la chirurgie implantaire guidée : sécurité, précision et simplicité pour tous.
+            <br/>
+            </p>
+      </div>
+    </div>
 
+    <div className="container mx-auto mb-24 overflow-y-auto" >
     <div className="w-full text-center pb-16 bg-blueGray-200 p-8 rounded-lg shadow-lg">
             <h3 className="font-semibold text-3xl">
-            Vous aimez nos services?
+            Contactez-nous
             </h3>
-            <p className="text-blueGray-500 text-lg leading-relaxed mt-4 mb-4">
-            Parce que si tu le fais, ça peut être le tien maintenant. Vous pouvez désormais créer un compte gratuitement
-            </p>
             <div className="sm:block flex flex-col mt-10">
               <a
                 href="/auth/register"
@@ -123,8 +138,6 @@ function Contact() {
             </form>
             </div>
           </div>
-        
-
     </div>
     </section>
     <Footer />

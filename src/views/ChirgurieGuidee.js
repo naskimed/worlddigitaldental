@@ -13,12 +13,12 @@ export default function ChirGuidee() {
     <IndexNavbar fixed />
 
 <section className="bg-gradient-to-r from-blue-500 via-blue-700 to-blue-900 relative pt-16 items-center max-h-screen flex flex-col" id="index-cover" style={{ marginTop: "5rem" }} >
-  <div className="container mx-auto mb-8 overflow-y-auto">
+  <div className="container mx-auto mb-8 overflow-y-auto flex mb-4">
     <div className="bg-white bg-opacity-90 p-8 rounded-lg shadow-lg" style={{backgroundColor:"#ffffffcb"}}>
       <h2 className="text-4xl font-semibold text-blueGray-900 mb-4 text-center">
         Vers la chirurgie implantaire guidée accessible à tous
       </h2>
-      <div className="p-4">
+      <div className="p-4 w-3/4">
         <p className="text-blueGray-600 mb-4">
           <b>Le système de chirurgie implantaire guidée</b> a été conçu pour faciliter l’acte chirurgical, en passant de la simulation et la planification à la pose d'implants. 
         </p>
@@ -35,6 +35,14 @@ export default function ChirGuidee() {
         Les guides radiologiques et chirurgicaux sont des outils qui encadrent la pratique implantaire, en aidant le praticien à poser idéalement les implants tout en respectant les impératifs esthétiques, anatomiques (volume et densité osseuse) et prothétiques d’une part, et d’éviter les structures anatomiques d’autre part.
         </p>
       </div>
+      <div className="w-1/4">
+      <img  
+      src={require("assets/img/f3.png")}
+      className="w-full rounded-lg w-full h-auto"
+      alt="Image description"
+      style={{width:"100%", height:"auto"}}
+      />
+    </div>
     </div>
   </div>
 

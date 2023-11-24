@@ -74,7 +74,7 @@ export default function Navbar(props) {
             <li className="flex items-center">
               <a
                 className="hover:text-white text-white px-3 py-4 lg:py-2 flex items-center text-xs uppercase font-bold"
-                href="/contact"
+                href="/savoirplus"
               >
                 S Plus
               </a>

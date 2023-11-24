@@ -1,11 +1,23 @@
 /*eslint-disable*/
-import React from "react";
-import { Link } from "react-router-dom";
-
+import React, {useState, useEffect} from "react";
+import { Link, useLocation } from "react-router-dom";
 import NotificationDropdown from "components/Dropdowns/NotificationDropdown.js";
 import UserDropdown from "components/Dropdowns/UserDropdown.js";
 
 export default function Sidebar() {
+
+  const [activeLink, setActiveLink] = useState("");
+  const location = useLocation();
+
+  useEffect(() => {
+    // Update activeLink when the location changes
+    setActiveLink(location.pathname);
+  }, [location.pathname]);
+
+  const isLinkActive = (link) => {
+    return activeLink === link;
+  };
+
   const [collapseShow, setCollapseShow] = React.useState("hidden");
   return (
     <>
@@ -93,7 +105,7 @@ export default function Sidebar() {
                 <Link
                   className={
                     "text-xs uppercase py-3 font-bold block " +
-                    (window.location.href.indexOf("/admin/dashboard") !== -1
+                    (isLinkActive("/user/dashboard")
                       ? "text-lightBlue-500 hover:text-lightBlue-600"
                       : "text-blueGray-700 hover:text-blueGray-500")
                   }
@@ -102,9 +114,9 @@ export default function Sidebar() {
                   <i
                     className={
                       "fas fa-user mr-2 text-sm " +
-                      (window.location.href.indexOf("/admin/dashboard") !== -1
-                        ? "opacity-75"
-                        : "text-blueGray-300")
+                      (isLinkActive("/user/dashboard")
+                      ? "opacity-75"
+                      : "text-blueGray-300")    
                     }
                   ></i>{" "}
                   Utilisateur
@@ -115,7 +127,7 @@ export default function Sidebar() {
                 <Link
                   className={
                     "text-xs uppercase py-3 font-bold block " +
-                    (window.location.href.indexOf("/admin/nouvelle_commande") !== -1
+                    (isLinkActive("/user/nouvelle_commande")
                       ? "text-lightBlue-500 hover:text-lightBlue-600"
                       : "text-blueGray-700 hover:text-blueGray-500")
                   }
@@ -124,9 +136,9 @@ export default function Sidebar() {
                   <i
                     className={
                       "fas fa-shopping-cart mr-2 text-sm " +
-                      (window.location.href.indexOf("/admin/nouvelle_commande") !== -1
-                        ? "opacity-75"
-                        : "text-blueGray-300")
+                      (isLinkActive("/user/nouvelle_commande")
+                      ? "opacity-75"
+                      : "text-blueGray-300")    
                     }
                   ></i>{" "}
                   Nouvelle Commande
@@ -137,18 +149,18 @@ export default function Sidebar() {
                 <Link
                   className={
                     "text-xs uppercase py-3 font-bold block " +
-                    (window.location.href.indexOf("/admin/commandes") !== -1
-                      ? "text-lightBlue-500 hover:text-lightBlue-600"
-                      : "text-blueGray-700 hover:text-blueGray-500")
+                    (isLinkActive("/user/commandes")
+                    ? "text-lightBlue-500 hover:text-lightBlue-600"
+                    : "text-blueGray-700 hover:text-blueGray-500")
                   }
                   to="/user/commandes"
                 >
                   <i
                     className={
                       "fas fa-table mr-2 text-sm " +
-                      (window.location.href.indexOf("/admin/commandes") !== -1
-                        ? "opacity-75"
-                        : "text-blueGray-300")
+                      (isLinkActive("/user/commandes")
+                      ? "opacity-75"
+                      : "text-blueGray-300") 
                     }
                   ></i>{" "}
                   Vos Commandes
@@ -159,18 +171,18 @@ export default function Sidebar() {
                 <Link
                   className={
                     "text-xs uppercase py-3 font-bold block " +
-                    (window.location.href.indexOf("/admin/messages") !== -1
-                      ? "text-lightBlue-500 hover:text-lightBlue-600"
-                      : "text-blueGray-700 hover:text-blueGray-500")
+                    (isLinkActive("/user/messages")
+                    ? "text-lightBlue-500 hover:text-lightBlue-600"
+                    : "text-blueGray-700 hover:text-blueGray-500")
                   }
                   to="/user/messages"
                 >
                   <i
                     className={
                       "fas fa-envelope mr-2 text-sm " +
-                      (window.location.href.indexOf("/admin/messages") !== -1
-                        ? "opacity-75"
-                        : "text-blueGray-300")
+                      (isLinkActive("/user/messages")
+                      ? "opacity-75"
+                      : "text-blueGray-300") 
                     }
                   ></i>{" "}
                   Messagerie 

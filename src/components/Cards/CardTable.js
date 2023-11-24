@@ -1,5 +1,6 @@
 import React, {useState,useEffect} from "react";
 import axios from "axios";
+import PropTypes from "prop-types";
 
 // components
 
@@ -123,7 +124,7 @@ export default function CardTable({ color }) {
                     (color === "light" ? "text-blueGray-600" : "text-white")
                   }
                 >
-                  {order.patientName}
+                {order.patientName}
                 </span>
               </th>
               <td className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
@@ -174,3 +175,10 @@ export default function CardTable({ color }) {
   );
 }
 
+CardTable.defaultProps = {
+  color: "light",
+};
+
+CardTable.propTypes = {
+  color: PropTypes.oneOf(["light", "dark"]),
+};
