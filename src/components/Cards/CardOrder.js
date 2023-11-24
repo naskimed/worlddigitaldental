@@ -24,7 +24,7 @@ const OrderItem = ({ order, onConfirm, onReject, onIgnore }) => {
         console.log("Order confirmed:", order);
     
         // Navigate to another page (replace '/confirmation-page' with the desired path)
-        history.push("/user/dashboard/");
+        history.push("/user/payment");
       };
     
       const handleReject = () => {

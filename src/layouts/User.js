@@ -23,7 +23,8 @@ import GC_PCI from "views/user/GC_PCI";
 import GC_PC from "views/user/GC_PC";
 import GC_P from "views/user/GC_P";
 import OrderConfirmation from "views/user/OrderConfirmation";
-
+import PaymentMethods from "views/user/PaymentMethod";
+import Confirmed from "views/user/Confirmed";
 
 
 export default function User() {
@@ -44,6 +45,8 @@ export default function User() {
             <Route path="/user/confirmation" exact component={OrderConfirmation} />
             <Route path="/user/nouvelle_commande" exact component={Commandes} />
             <Route path="/user/nouvelle_commande/guide_chirurgical" exact component={Guide_chirurgical} />
+            <Route path="/user/payment" exact component={PaymentMethods} />
+            <Route path="/user/confirmed" exact component={Confirmed} />
 
             <Route path="/user/nouvelle_commande/guide_chirurgical" exact component={Guide_chirurgical} />
             <Route path="/user/nouvelle_commande/guide_chirurgical/guide_chirurgical_pci" exact component={GC_PCI} />
