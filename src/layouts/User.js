@@ -22,6 +22,8 @@ import ModelesDentaires from "views/user/ModelesDentaires";
 import GC_PCI from "views/user/GC_PCI";  
 import GC_PC from "views/user/GC_PC";
 import GC_P from "views/user/GC_P";
+import OrderConfirmation from "views/user/OrderConfirmation";
+
 
 
 export default function User() {
@@ -39,7 +41,9 @@ export default function User() {
           <Switch>
             <Route path="/user/dashboard" exact component={Dashboard} />
             <Route path="/user/messages" exact component={Messages} />
+            <Route path="/user/confirmation" exact component={OrderConfirmation} />
             <Route path="/user/nouvelle_commande" exact component={Commandes} />
+            <Route path="/user/nouvelle_commande/guide_chirurgical" exact component={Guide_chirurgical} />
 
             <Route path="/user/nouvelle_commande/guide_chirurgical" exact component={Guide_chirurgical} />
             <Route path="/user/nouvelle_commande/guide_chirurgical/guide_chirurgical_pci" exact component={GC_PCI} />
@@ -53,7 +57,6 @@ export default function User() {
             <Route path="/user/nouvelle_commande/first" exact component={Maps} />
             <Redirect from="/user" to="/user/dashboard" />
           </Switch>
-          <FooterAdmin className="flex-shrink-1" />
           </div>
         </div>
       </div>
