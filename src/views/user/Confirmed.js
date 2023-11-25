@@ -26,8 +26,8 @@ const Confirmed = () => {
           d="M5 13l4 4L19 7"
         ></path>
       </svg>
-      <h2 className="text-2xl font-bold text-green-600">Order Confirmed!</h2>
-      <p className="text-gray-500">Thank you for your purchase.</p>
+      <h2 className="text-2xl font-bold text-green-600">Commande confirmée!</h2>
+      <p className="text-gray-500">Merci pour votre achat.</p>
     </div>
 
     </div>

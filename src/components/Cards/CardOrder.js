@@ -56,14 +56,14 @@ const OrderItem = ({ order, onConfirm, onReject, onIgnore }) => {
           <div key={order.id} className="order-item border p-4 mb-4 flex flex-col items-start shadow-lg rounded-lg bg-blueGray-100 border-0">
             <h3 className="text-lg font-bold mb-2">{order.patientName}</h3>
             <p>Type: {order.type}</p>
-            <p>State: {order.state}</p>
+            <p>État: {order.state}</p>
             <p>Date: {order.date}</p>
             <button
               className="bg-blue-500 text-white px-4 py-2 mt-2 rounded"
               onClick={showPdf}
               style={{ backgroundColor: "#14939C" }}
             >
-              View PDF
+              Afficher le PDF
             </button>
             <div className="mt-3 flex items-center">
               <label className="mr-2" htmlFor={`confirmCheckbox_${order.id}`}>
@@ -83,20 +83,20 @@ const OrderItem = ({ order, onConfirm, onReject, onIgnore }) => {
                 style={buttonStyle}
                 // style={{ backgroundColor: "#2dce89" }}
               >
-                Confirm
+                Confirmer
               </button>
               <button
                 className="bg-red-500 text-white px-4 py-2 mr-2 rounded"
                 onClick={(handleReject)}
               >
-                Reject
+                Rejeter
               </button>
               <button
                 className="bg-gray-500 text-white px-4 py-2 rounded"
                 onClick={(handleIgnore)}
                 style={{ backgroundColor: "#808080" }}
               >
-                Ignore
+                Ignorer
               </button>
             </div>
           </div>

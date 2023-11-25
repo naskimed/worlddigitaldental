@@ -179,7 +179,7 @@ export default function Sidebar() {
                 >
                   <i
                     className={
-                      "fas fa-envelope mr-2 text-sm " +
+                      "fas fa-check mr-2 text-sm " +
                       (isLinkActive("/user/confirmation")
                       ? "opacity-75"
                       : "text-blueGray-300") 
