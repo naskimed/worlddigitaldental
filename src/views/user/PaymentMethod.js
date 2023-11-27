@@ -18,7 +18,7 @@ const PaymentMethods = ({ onConfirm, onIgnore }) => {
 
   const handleConfirm = () => {
     if (selectedPaymentMethod === "none") {
-      setErrorMessage("Please select a payment method");
+      setErrorMessage("Veuillez choisir un moyen de paiement");
       return;
     }
 

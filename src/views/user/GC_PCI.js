@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
 import "assets/styles/RectCard.css"
 import { useHistory } from 'react-router-dom'
-import { Link } from 'react-dom'; 
-import { createRoot } from 'react-dom';
 import axios from 'axios';
+import { Document, Page, Text, View, Image, StyleSheet } from '@react-pdf/renderer';
+import { saveAs } from 'file-saver';
 
 
 export default function GC_PCI() {
@@ -90,18 +90,128 @@ export default function GC_PCI() {
             if (response.status === 200) {
               // Handle a successful submission, e.g., show a success message, redirect, etc.
               console.log('Form submitted successfully');
-              history.push('/dashboard');
+              history.push("/user/to_confirm");
             } 
           } catch (error) {
             // Handle errors related to the API request
             console.error('An error occurred during form submission:', error);
+            history.push("/user/to_confirm");
+
           }
         }
         else {
           // If the form is not valid, set formError to true
           setFormError(true);
+          history.push("/user/to_confirm");
+
         }    
       };  
+
+      const PdfStyles = StyleSheet.create({
+        container: {
+          padding: 20,
+          fontFamily: 'Helvetica',
+        },
+        heading: {
+          fontSize: 18,
+          fontWeight: 'bold',
+          marginBottom: 10,
+        },
+        text: {
+          fontSize: 12,
+          marginBottom: 8,
+        },
+        image: {
+          width: 200,
+          height: 150,
+          marginBottom: 10,
+        },
+      });
+
+      const [pdfData, setPdfData] = useState(null);
+
+      const generatePdf = async () => {
+        if (validateForm()) {
+          try {
+            // Generate PDF using form data
+            const pdfBlob = await generatePdfDocument();
+            
+            // Create a data URL for the blob
+            const dataUrl = URL.createObjectURL(pdfBlob);
+    
+            // Set the data URL in state
+            setPdfData(dataUrl);
+
+            // Send the PDF to the server
+            await savePdfOnServer(pdfBlob);
+          
+          } catch (error) {
+            console.error('Error generating PDF:', error);
+          }
+        } else {
+          setFormError(true);
+        }
+      };
+    
+      const generatePdfDocument = async () => {
+        // Use @react-pdf/renderer to create a PDF document
+        // Customize the PDF content based on your form data
+        const { PDFViewer, pdf } = require('@react-pdf/renderer');
+    
+        const MyDocument = () => (
+          <Document>
+            <Page size="A4" style={PdfStyles.container}>
+              <View>
+              <Image
+                src="/assets/img/WDD.png" // Replace with the actual path to your image
+                style={PdfStyles.image}// Set the desired width and height
+              />
+              <Text style={PdfStyles.heading}>{`SAFETY GUIDE`}</Text>
+              <Text style={PdfStyles.text}>{`Nom du patient: ${formData.firstName} ${formData.lastName}`}</Text>
+              <Text style={PdfStyles.text}>{`Date de naissance: ${formData.dob}`}</Text>
+              <Text style={PdfStyles.text}>{`Safety Guide: ${formData.safetyGuide}`}</Text>
+              <Text style={PdfStyles.text}>{`Edenté: ${formData.edente}`}</Text>
+              <Text style={PdfStyles.text}>{`Safety Guide Type: ${formData.safetyGuideType}`}</Text>
+              <Text style={PdfStyles.text}>{`Guide Appui: ${formData.guideAppui}`}</Text>
+              <Text style={PdfStyles.text}>{`Implant Sites: ${formData.implantSites}`}</Text>
+              <Text style={PdfStyles.text}>{`Implant System: ${formData.implantSystem}`}</Text>
+              <Text style={PdfStyles.text}>{`Implant Details: ${formData.implantDetails}`}</Text>
+              <Text style={PdfStyles.text}>{`Prosthetic Project: ${formData.prostheticProject}`}</Text>
+              <Text style={PdfStyles.text}>{`With Bone Graft: ${formData.withBoneGraft}`}</Text>
+              <Text style={PdfStyles.text}>{`With Flap: ${formData.withFlap}`}</Text>
+              <Text style={PdfStyles.text}>{`Remarks: ${formData.remarks}`}</Text>
+              </View>
+            </Page>
+          </Document>
+        );
+    
+        const pdfBlob = await pdf(<MyDocument />).toBlob();
+        return pdfBlob;
+      };
+
+      const savePdfOnServer = async (pdfBlob) => {
+        try {
+          // Create a FormData object to send the PDF file
+          const formData = new FormData();
+          formData.append('pdfFile', pdfBlob, 'generated-pdf.pdf');
+      
+          // Send a POST request to your server endpoint for handling file uploads
+          const response = await axios.post('/api/upload-pdf', formData, {
+            headers: {
+              'Content-Type': 'multipart/form-data',
+            },
+          });
+      
+          // Handle the response from the server as needed
+          console.log('PDF saved on the server:', response.data);
+        } catch (error) {
+          console.error('Error saving PDF on the server:', error);
+        }
+      };
+    
+      const downloadPdf = () => {
+        saveAs(pdfData, 'generated-pdf.pdf');
+      };
 
   return (
 <> 
@@ -154,7 +264,7 @@ export default function GC_PCI() {
           />
 
         <label htmlFor="edente" className="block uppercase tracking-wide text-grey-darker text-xs font-bold mb-2">
-            Precisez s'il s'agit d'un edente
+            Precisez s'il s'agit d'un édenté
           </label>
           <select
             id="edente"
@@ -359,14 +469,45 @@ export default function GC_PCI() {
 
           <br></br>
 
-            <button
-              type="submit"
-              className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-6 rounded"
-              id="submitbuttonNC"
-              onClick={handleSubmit}
-            >
-              Envoyer
-            </button>
+        <div className="flex justify-between">
+          <button
+            type="submit"
+            className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-6 rounded"
+            id="submitbuttonNC"
+            onClick={generatePdf}
+          >
+            Vérifiez votre commande
+          </button>
+          <div className="flex">
+            <div className="mr-auto">
+              {/* "mr-auto" adds margin to the right, pushing the button to the left */}
+              <button
+                type="button"
+                className="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-6 rounded"
+                id="submitbuttonNC"
+                onClick={handleSubmit}
+              >
+                Envoyer
+              </button>
+            </div>
+          </div>
+        </div>
+
+
+      {pdfData && (
+        <div>
+          <br></br>
+          <button onClick={downloadPdf} style={{color:"#034542"}}>Download PDF</button>
+          {/* Display the PDF using <PDFViewer /> if needed */}
+          <iframe
+            src={pdfData}
+            title="Generated PDF"
+            width="100%"
+            height="500px"
+            style={{ border: '1px solid #ddd' }}
+          />
+        </div>
+      )}
 
         </div>
   </div>
