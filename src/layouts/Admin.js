@@ -4,30 +4,18 @@ import { Switch, Route, Redirect } from "react-router-dom";
 // components
 
 import AdminNavbar from "components/Navbars/AdminNavbar.js";
-import Sidebar from "components/Sidebar/Sidebar.js";
-import FooterAdmin from "components/Footers/FooterAdmin.js";
+import AdminSidebar from "components/Sidebar/AdminSidebar.js";
 import HeaderStatsEmpty from "components/Headers/HeaderStatsEmpty.js";
 
 // views
-
-import Dashboard from "views/admin/Dashboard.js";
-import Maps from "views/admin/Maps.js";
-import Commandes from "views/admin/Commandes.js";
-import VosCommandes from "views/admin/VosCommandes.js";
-import Messages from "views/admin/Messages.js";
-import Guide_chirurgical from "views/admin/GuideChirurgical.js";
-import Aligneurs from "views/admin/Aligneurs";
-import Goutieres from "views/admin/Goutieres";
-import ModelesDentaires from "views/admin/ModelesDentaires";
-import GC_PCI from "views/admin/GC_PCI";  
-import GC_PC from "views/admin/GC_PC";
-import GC_P from "views/admin/GC_P";
+import AcceptUsers from "views/admin/AcceptUserRequest";
+import AcceptOrder from "views/admin/AcceptOrders";
 
 
 export default function Admin() {
   return (
     <>
-      <Sidebar />
+      <AdminSidebar />
       <div className="relative md:ml-64 bg-blueGray-100 h-screen">
         <AdminNavbar />
         {/* Header */}
@@ -37,7 +25,7 @@ export default function Admin() {
         <div className="px-4 md:px-10 mx-auto w-full -m-24" style={{ backgroundColor: "#f0f0f0" }}>   
         
           <Switch>
-            <Route path="/admin/dashboard" exact component={Dashboard} />
+            {/* <Route path="/admin/dashboard" exact component={Dashboard} />
             <Route path="/admin/messages" exact component={Messages} />
             <Route path="/admin/nouvelle_commande" exact component={Commandes} />
 
@@ -51,9 +39,14 @@ export default function Admin() {
             <Route path="/admin/nouvelle_commande/modeles_dentaires" exact component={ModelesDentaires} />
             <Route path="/admin/commandes" exact component={VosCommandes} />
             <Route path="/admin/nouvelle_commande/first" exact component={Maps} />
-            <Redirect from="/admin" to="/admin/dashboard" />
+            <Redirect from="/admin" to="/admin/dashboard" /> */}
+            <Route path="/admin/users_requests" exact component={AcceptUsers} />
+            <Route path="/admin/commandes" exact component={AcceptOrder} />
+
+            <Redirect from="/admin" to="/admin/users_requests" />
           </Switch>
-          <FooterAdmin className="flex-shrink-1" />
+          <br></br>
+          <br></br>
           </div>
         </div>
       </div>
