@@ -2,7 +2,7 @@
 import React,{useState} from "react";
 import { useHistory } from "react-router-dom";
 
-const ClientOrder = ({ order, onConfirm, onReject }) => {
+const ConfirmOrder = ({ order, onIgnore }) => {
 
     const showPdf = () => {
         // Replace 'your_pdf_url' with the actual URL of the PDF
@@ -11,24 +11,19 @@ const ClientOrder = ({ order, onConfirm, onReject }) => {
 
     // to handle the confirm, reject and ignore actions
     const history = useHistory();
-    const handleConfirm = () => {
-        // Handle confirmation logic
-        onConfirm(order);
-
-        // For simplicity, we are just logging the confirmation for now
-        console.log("Order confirmed:", order);
+    const handleAttach = () => {
     
         // Navigate to another page (replace '/confirmation-page' with the desired path)
-        history.push("/admin/order_first_confirmation");
+        history.push("/admin/commandes_en_attente/pdf");
       };
     
-      const handleReject = () => {
+      const handleIgnore = () => {
         
-        // For simplicity, we are just logging the ignore for now
-        console.log("Order rejected:", order);
+        // For simplicity, we are just lhandleAttachogging the ignore for now
+        console.log("Order Ignored:", order);
 
         // Handle rejection logic
-        onReject(order);
+        onIgnore(order);
       };
 
     
@@ -46,30 +41,21 @@ const ClientOrder = ({ order, onConfirm, onReject }) => {
             <p>Date: {order.date}</p>
             <button
               className="bg-blue-500 text-white px-4 py-2 mt-2 rounded"
-              onClick={showPdf}
+              onClick={handleAttach}
               style={{ backgroundColor: "#14939C" }}
             >
-              Afficher le PDF
+              Attachez le PDF
             </button>
 
-            <div className="mt-2 flex justify-end w-full">
-              <button
-                className="bg-green-500 text-white px-4 py-2 mr-2 rounded"
-                onClick={(handleConfirm)}
-                style={buttonStyle}
-                // style={{ backgroundColor: "#2dce89" }}
-              >
-                Confirmer
-              </button>
-              <button
-                className="bg-red-500 text-white px-4 py-2 mr-2 rounded"
-                onClick={(handleReject)}
-              >
-                Rejeter
-              </button>
-            </div>
+            <button
+              className="bg-red-500 text-white px-4 py-2 mt-2 rounded"
+              onClick={handleIgnore}
+            //   style={{ backgroundColor: "#14939C" }}
+            >
+              Ignorer
+            </button>
           </div>
   );
 };
 
-export default ClientOrder;
+export default ConfirmOrder;

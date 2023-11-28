@@ -5,12 +5,14 @@ import { useLocation } from "react-router-dom";
 import NotificationDropdown from "components/Dropdowns/NotificationDropdown.js";
 import UserDropdown from "components/Dropdowns/UserDropdown.js";
 import OrderItem from "components/Cards/CardOrder";
+import { useHistory } from "react-router-dom";
 
 const OrderConfirmation = ({ onConfirm, onReject, onIgnore }) => {
 
   const [activeLink, setActiveLink] = useState("");
   const [orders1, setOrders] = useState([]); // Just for now. we need to change orders1 ==> orders in the dynamic part
   const location = useLocation();
+  const history = useHistory();
 
   useEffect(() => {
     // Fetch orders from your API and set them in state
@@ -39,6 +41,8 @@ const OrderConfirmation = ({ onConfirm, onReject, onIgnore }) => {
   const handleReject = (order) => {
     // Logic for rejecting the order
     console.log("Order rejected:", order);
+    history.push("/user/confirmation/rejection");
+
   };
 
   const handleIgnore = (order) => {

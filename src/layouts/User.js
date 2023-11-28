@@ -26,7 +26,8 @@ import OrderConfirmation from "views/user/OrderConfirmation";
 import PaymentMethods from "views/user/PaymentMethod";
 import Confirmed from "views/user/Confirmed";
 import ToBeConfirmed from "views/user/To_be_confirmed";
-
+import OrderRejectionPage from "views/user/OrderRejection";
+import RejectionP from "views/user/RejectionReason";
 
 export default function User() {
   return (
@@ -49,6 +50,8 @@ export default function User() {
             <Route path="/user/payment" exact component={PaymentMethods} />
             <Route path="/user/confirmed" exact component={Confirmed} />
             <Route path="/user/to_confirm" exact component={ToBeConfirmed} />
+            <Route path="/user/confirmation/rejection" exact component={OrderRejectionPage} />
+            <Route path="/user/rejected" exact component={RejectionP} />
 
             <Route path="/user/nouvelle_commande/guide_chirurgical" exact component={Guide_chirurgical} />
             <Route path="/user/nouvelle_commande/guide_chirurgical/guide_chirurgical_pci" exact component={GC_PCI} />

@@ -14,7 +14,7 @@ const UserRequests = ({ order, onConfirm, onReject }) => {
         console.log("Order confirmed:", order);
     
         // Navigate to another page (replace '/confirmation-page' with the desired path)
-        history.push("/user/payment");
+        history.push("/admin/accept_user");
       };
     
       const handleReject = () => {
