@@ -4,10 +4,14 @@ import { useHistory } from "react-router-dom";
 
 const OrderItem = ({ order, onConfirm, onReject, onIgnore }) => {
 
-    const showPdf = () => {
-        // Replace 'your_pdf_url' with the actual URL of the PDF
-        window.open('your_pdf_url', '_blank');
-      };
+  const showPdf = () => {
+    // Assuming the order object has a 'pdfUrl' property containing the PDF URL
+    if (order.pdfUrl) {
+      window.open(order.pdfUrl, '_blank');
+    } else {
+      console.error("PDF URL not available for this order.");
+    }
+  };
 
     const [isCheckboxChecked, setIsCheckboxChecked] = useState(false);  
     const handleCheckboxChange = () => {

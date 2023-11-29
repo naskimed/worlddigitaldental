@@ -2,7 +2,7 @@
 import React,{useState} from "react";
 import { useHistory } from "react-router-dom";
 
-const ConfirmOrder = ({ order, onIgnore }) => {
+const ConfirmOrder = ({ order, onReject }) => {
 
     const showPdf = () => {
         // Replace 'your_pdf_url' with the actual URL of the PDF
@@ -19,11 +19,11 @@ const ConfirmOrder = ({ order, onIgnore }) => {
     
       const handleIgnore = () => {
         
-        // For simplicity, we are just lhandleAttachogging the ignore for now
+        // For simplicity, we are just logging the ignore for now
         console.log("Order Ignored:", order);
 
         // Handle rejection logic
-        onIgnore(order);
+        onReject(order);
       };
 
     
