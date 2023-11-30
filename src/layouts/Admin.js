@@ -15,6 +15,7 @@ import PdfUploadPage from "views/admin/AttachezPDF";
 import PdfConfirmed from "views/admin/PDFconfirmed";
 import OrderFirstConfirmation from "views/admin/OrderConfirmed";
 import AccountConfirmed from "views/admin/AccountConfirmed";
+import ShowDetails from "views/admin/ShowDetails";
 
 export default function Admin() {
   return (
@@ -36,6 +37,7 @@ export default function Admin() {
             <Route path="/admin/pdf_envoyee" exaact component={PdfConfirmed} /> 
             <Route path="/admin/order_first_confirmation" exact component={OrderFirstConfirmation} />
             <Route path="/admin/accept_user" exact component={AccountConfirmed} />
+            <Route path="/admin/commandes/commande" exaact component={ShowDetails} />
 
             <Redirect from="/admin" to="/admin/users_requests" />
           </Switch>

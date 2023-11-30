@@ -1,0 +1,23 @@
+/* OrderRejectionPage.css */
+
+/* Define your button styles here */
+.button {
+    border: none;
+    padding: 10px 20px;
+    margin: 5px;
+    cursor: pointer;
+  }
+  
+  /* Define styles for each rejection reason button */
+  .button.MissingInformation {
+    background-color: #3498db;
+    color: #fff;
+  }
+  
+  .button.CancelCommand {
+    background-color: #e74c3c;
+    color: #fff;
+  }
+  
+  /* Add styles for other rejection reasons if needed */
+  

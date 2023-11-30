@@ -2,7 +2,7 @@
 import React,{useState} from "react";
 import { useHistory } from "react-router-dom";
 
-const OrderItem = ({ order, onConfirm, onReject, onIgnore }) => {
+const OrderItem = ({ order, onConfirm, onReject}) => {
 
   const showPdf = () => {
     // Assuming the order object has a 'pdfUrl' property containing the PDF URL
@@ -28,7 +28,7 @@ const OrderItem = ({ order, onConfirm, onReject, onIgnore }) => {
         console.log("Order confirmed:", order);
     
         // Navigate to another page (replace '/confirmation-page' with the desired path)
-        history.push("/user/payment");
+        history.push("/user/confirmation/amount");
       };
     
       const handleReject = () => {
@@ -40,15 +40,6 @@ const OrderItem = ({ order, onConfirm, onReject, onIgnore }) => {
         onReject(order);
       };
     
-      const handleIgnore = () => {
-
-        // For simplicity, we are just logging the ignore for now
-        console.log("Order ignored:", order);
-
-        // Handle ignore logic
-        onIgnore(order);
-      };
-
     
     const buttonStyle = {
         backgroundColor: isCheckboxChecked ? "#4CAF50" : "#ddd", // Green when checked, gray when unchecked
@@ -94,13 +85,6 @@ const OrderItem = ({ order, onConfirm, onReject, onIgnore }) => {
                 onClick={(handleReject)}
               >
                 Rejeter
-              </button>
-              <button
-                className="bg-gray-500 text-white px-4 py-2 rounded"
-                onClick={(handleIgnore)}
-                style={{ backgroundColor: "#808080" }}
-              >
-                Ignorer
               </button>
             </div>
           </div>

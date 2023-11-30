@@ -27,7 +27,7 @@ const PdfUploadPage = () => {
           // Handle success (e.g., show a success message)
         } else {
           console.error('Failed to upload PDF');
-          history.push('/admin/pdf_envoyee');
+          history.push('/admin/pdf_envoyee');   
           // Handle failure (e.g., show an error message)
         }
       } else {

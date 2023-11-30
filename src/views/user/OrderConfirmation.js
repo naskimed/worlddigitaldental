@@ -7,7 +7,7 @@ import UserDropdown from "components/Dropdowns/UserDropdown.js";
 import OrderItem from "components/Cards/CardOrder";
 import { useHistory } from "react-router-dom";
 
-const OrderConfirmation = ({ onConfirm, onReject, onIgnore }) => {
+const OrderConfirmation = ({ onConfirm, onReject }) => {
 
   const [activeLink, setActiveLink] = useState("");
   const [orders1, setOrders] = useState([]); // Just for now. we need to change orders1 ==> orders in the dynamic part
@@ -43,11 +43,6 @@ const OrderConfirmation = ({ onConfirm, onReject, onIgnore }) => {
     console.log("Order rejected:", order);
     history.push("/user/confirmation/rejection");
 
-  };
-
-  const handleIgnore = (order) => {
-    // Logic for ignoring the order
-    console.log("Order ignored:", order);
   };
 
   const orders = [
@@ -90,7 +85,6 @@ const OrderConfirmation = ({ onConfirm, onReject, onIgnore }) => {
           order={order}
           onConfirm={handleConfirm}
           onReject={handleReject}
-          onIgnore={handleIgnore}
         />
         ))}
       </div>
