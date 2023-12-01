@@ -21,17 +21,21 @@ const PaymentMethods = ({ onConfirm, onIgnore }) => {
       setErrorMessage("Veuillez choisir un moyen de paiement");
       return;
     }
-
+  
     // Display specific information based on the selected payment method
     handleDisplayInformation(selectedPaymentMethod);
-
+  
     // Call the backend API to confirm the payment if needed
     // ... (replace with actual API call)
-
-    // Redirect to the confirmed page
-    history.push("/user/confirmed");
+  
+    // Redirect to the confirmed page or payment upload page
+    if (selectedPaymentMethod === "moneyTransfer" || selectedPaymentMethod === "qrCode") {
+      history.push("/user/payment_upload");
+    } else {
+      history.push("/user/confirmed");
+    }
   };
-
+  
   const handleDisplayInformation = (paymentMethod) => {
     // Display specific information based on the selected payment method
     switch (paymentMethod) {

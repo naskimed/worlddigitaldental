@@ -5,6 +5,10 @@ import { Document, Page, StyleSheet, Text, View } from '@react-pdf/renderer';
 const ShowDetails = () => {
   const history = useHistory();
   const { orderId } = useParams(); // Assuming you have the order ID in the route params
+
+  const [showOtherInput, setShowOtherInput] = useState(false);
+  const [otherInputValue, setOtherInputValue] = useState('');
+
   const [pdfData, setPdfData] = useState(null);
   const [validationOptions, setValidationOptions] = useState({
     missingValue: false,
@@ -32,11 +36,15 @@ const ShowDetails = () => {
   }, [orderId]);
 
   const handleCheckboxChange = (option) => {
-    setValidationOptions((prevOptions) => ({
-      ...prevOptions,
-      [option]: !prevOptions[option],
-    }));
-  };
+    if (option === 'other') {
+      setShowOtherInput((prevShowOtherInput) => !prevShowOtherInput);
+    } else {
+      setValidationOptions((prevOptions) => ({
+        ...prevOptions,
+        [option]: !prevOptions[option],
+      }));
+    }
+  };  
 
   const handleAccept = () => {
     // Handle accept logic, e.g., update order status in the database
@@ -45,8 +53,11 @@ const ShowDetails = () => {
   };
 
   const handleReject = async () => {
-    // Check if at least one checkbox is checked
-    if (Object.values(validationOptions).some((option) => option)) {
+    // Check if at least one checkbox is checked or if "Other" checkbox is checked with some text entered
+    if (
+      Object.values(validationOptions).some((option) => option) ||
+      ( showOtherInput )
+    ) {
       try {
         // Assuming you have an API endpoint to delete the order and send checkbox text
         const response = await fetch(`http://example.com/api/orders/${orderId}`, {
@@ -54,9 +65,12 @@ const ShowDetails = () => {
           headers: {
             'Content-Type': 'application/json',
           },
-          body: JSON.stringify(validationOptions),
+          body: JSON.stringify({
+            ...validationOptions,
+            otherReason: showOtherInput ? otherInputValue : '',
+          }),
         });
-
+  
         if (response.ok) {
           console.log('Order rejected and data sent to the backend.');
           history.push('/admin/orders'); // Redirect to the admin orders page
@@ -68,9 +82,10 @@ const ShowDetails = () => {
         history.push('/admin/orders'); // Redirect to the admin orders page
       }
     } else {
-      console.error('Please select at least one reason before rejecting the order.');
+      console.error('Please select at least one reason or provide an "Other" reason before rejecting the order.');
     }
   };
+  
 
   const styles = StyleSheet.create({
     container: {
@@ -111,9 +126,9 @@ const ShowDetails = () => {
       cursor: 'pointer',
     },
     rejectButton: {
-      backgroundColor: Object.values(validationOptions).some((option) => option) ? "#e74c3c" : "#ddd", // Green when checked, gray when unchecked
-      color: Object.values(validationOptions).some((option) => option) ? "white" : "#555", // White text when checked, dark gray text when unchecked
-      cursor: Object.values(validationOptions).some((option) => option) ? "pointer" : "not-allowed", // Pointer cursor when checked, not-allowed when unchecked
+      backgroundColor: Object.values(validationOptions).some((option) => option || (showOtherInput)) ? "#e74c3c" : "#ddd", // Green when checked, gray when unchecked
+      color: Object.values(validationOptions).some((option) => option || (showOtherInput)) ? "white" : "#555", // White text when checked, dark gray text when unchecked
+      cursor: Object.values(validationOptions).some((option) => option || (showOtherInput)) ? "pointer" : "not-allowed", // Pointer cursor when checked, not-allowed when unchecked
       padding: '10px 20px',
       borderRadius: 5,
       cursor: 'pointer',
@@ -167,6 +182,28 @@ const ShowDetails = () => {
             />
             <label htmlFor="invalidConceptionCheckbox">The conception of the 3D model is not valid</label>
           </div>
+
+          <div style={styles.checkboxLabel}>
+            <input
+              type="checkbox"
+              id="otherCheckbox"
+              checked={showOtherInput}
+              onChange={() => handleCheckboxChange('other')}
+              style={styles.checkbox}
+            />
+            <label htmlFor="otherCheckbox">Other</label>
+          {showOtherInput && (
+            <div style={{ marginLeft: '30px', marginTop: '10px' }}>
+              <input
+                type="text"
+                placeholder="Enter reason"
+                value={otherInputValue}
+                onChange={(e) => setOtherInputValue(e.target.value)}
+                style={{ padding: '5px' }}
+              />
+            </div>
+          )}
+          </div>
         </div>
         {/* Accept and reject buttons */}
         <div style={styles.buttonsContainer}>
@@ -180,7 +217,7 @@ const ShowDetails = () => {
           <button
             className="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded"
             onClick={handleReject}
-            disabled={!Object.values(validationOptions).some((option) => option)}
+            disabled={!Object.values(validationOptions).some((option) => option || (showOtherInput))}
             style={styles.rejectButton}
           >
             Rejeter
