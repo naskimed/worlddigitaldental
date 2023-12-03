@@ -171,16 +171,16 @@ export default function Sidebar() {
                 <Link
                   className={
                     "text-xs uppercase py-3 font-bold block " +
-                    (isLinkActive("/admin/commandes_acceptees")
+                    (isLinkActive("/admin/confirmedbyyser")
                     ? "text-lightBlue-500 hover:text-lightBlue-600"
                     : "text-blueGray-700 hover:text-blueGray-500")
                   }
-                  to="/admin/commandes_acceptees"
+                  to="/admin/confirmedbyyser"
                 >
                   <i
                     className={
                       "fas fa-check-circle mr-2 text-sm " +
-                      (isLinkActive("/admin/commandes_acceptees")
+                      (isLinkActive("/admin/confirmedbyyser")
                       ? "opacity-75"
                       : "text-blueGray-300") 
                     }

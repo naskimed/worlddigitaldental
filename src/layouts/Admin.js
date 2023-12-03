@@ -16,6 +16,7 @@ import PdfConfirmed from "views/admin/PDFconfirmed";
 import OrderFirstConfirmation from "views/admin/OrderConfirmed";
 import AccountConfirmed from "views/admin/AccountConfirmed";
 import ShowDetails from "views/admin/ShowDetails";
+import ConfirmedByUser from "views/admin/CofirmedOrderByUser";
 
 export default function Admin() {
   return (
@@ -38,6 +39,7 @@ export default function Admin() {
             <Route path="/admin/order_first_confirmation" exact component={OrderFirstConfirmation} />
             <Route path="/admin/accept_user" exact component={AccountConfirmed} />
             <Route path="/admin/commandes/commande" exaact component={ShowDetails} />
+            <Route path="/admin/confirmedbyyser" exact component={ConfirmedByUser} />
 
             <Redirect from="/admin" to="/admin/users_requests" />
           </Switch>
