@@ -1212,6 +1212,14 @@ select {
   background-color: rgba(220, 38, 38, var(--tw-bg-opacity));
 }
 
+.bg-green-500 {
+  color: #4CAF50; /* This hexadecimal value corresponds to green-500 in Tailwind */
+}
+
+.text-green-500 {
+  color: #4CAF50; /* This hexadecimal value corresponds to green-500 in Tailwind */
+}
+
 .bg-red-700 {
   --tw-bg-opacity: 1;
   background-color: rgba(185, 28, 28, var(--tw-bg-opacity));

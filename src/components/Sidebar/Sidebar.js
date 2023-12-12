@@ -179,13 +179,57 @@ export default function Sidebar() {
                 >
                   <i
                     className={
-                      "fas fa-check mr-2 text-sm " +
+                      "fas fa-spinner fa-pulse mr-2 text-sm " +
                       (isLinkActive("/user/confirmation")
                       ? "opacity-75"
                       : "text-blueGray-300") 
                     }
                   ></i>{" "}
                   Commandes à confirmer
+                </Link>
+              </li>
+
+              <li className="items-center">
+                <Link
+                  className={
+                    "text-xs uppercase py-3 font-bold block " +
+                    (isLinkActive("/user/termination")
+                    ? "text-lightBlue-500 hover:text-lightBlue-600"
+                    : "text-blueGray-700 hover:text-blueGray-500")
+                  }
+                  to="/user/termination"
+                >
+                  <i
+                    className={
+                      "fas fa-check-circle mr-2 text-sm " +
+                      (isLinkActive("/user/termination")
+                      ? "opacity-75"
+                      : "text-blueGray-300") 
+                    }
+                  ></i>{" "}
+                  Commandes Terminées
+                </Link>
+              </li>
+
+              <li className="items-center">
+                <Link
+                  className={
+                    "text-xs uppercase py-3 font-bold block " +
+                    (isLinkActive("/user/rejection")
+                    ? "text-lightBlue-500 hover:text-lightBlue-600"
+                    : "text-blueGray-700 hover:text-blueGray-500")
+                  }
+                  to="/user/rejection"
+                >
+                  <i
+                    className={
+                      "fas fa-times-circle mr-2 text-sm " +
+                      (isLinkActive("/user/rejection")
+                      ? "opacity-75"
+                      : "text-blueGray-300") 
+                    }
+                  ></i>{" "}
+                  Commandes Rejetées
                 </Link>
               </li>
 

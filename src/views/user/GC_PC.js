@@ -500,13 +500,6 @@ export default function GC_PCI() {
           <br></br>
           <button onClick={downloadPdf} style={{color:"#034542"}}>Download PDF</button>
           {/* Display the PDF using <PDFViewer /> if needed */}
-          <iframe
-            src={pdfData}
-            title="Generated PDF"
-            width="100%"
-            height="500px"
-            style={{ border: '1px solid #ddd' }}
-          />
         </div>
       )}
         </div>

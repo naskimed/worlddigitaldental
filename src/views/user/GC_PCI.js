@@ -102,8 +102,6 @@ export default function GC_PCI() {
         else {
           // If the form is not valid, set formError to true
           setFormError(true);
-          history.push("/user/to_confirm");
-
         }    
       };  
 
@@ -499,13 +497,6 @@ export default function GC_PCI() {
           <br></br>
           <button onClick={downloadPdf} style={{color:"#034542"}}>Download PDF</button>
           {/* Display the PDF using <PDFViewer /> if needed */}
-          <iframe
-            src={pdfData}
-            title="Generated PDF"
-            width="100%"
-            height="500px"
-            style={{ border: '1px solid #ddd' }}
-          />
         </div>
       )}
 

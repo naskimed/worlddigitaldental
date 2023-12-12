@@ -8,7 +8,7 @@ import TableDropdown from "components/Dropdowns/TableDropdown.js";
 
 export default function CardTable({ color }) {
 
-  const [orders, setOrders] = useState([]);
+  const [orders1, setOrders] = useState([]);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -22,6 +22,45 @@ export default function CardTable({ color }) {
 
     fetchData();
   }, []); // Empty dependency array ensures that the effect runs only once on mount
+
+  const orders = [
+    {
+      id: 1,
+      patientName: "Foulen el Foulani",
+      commandType: "Aligneur",
+      state: "En attente",
+      stateColor: "text-orange-500",  
+      date: "2023-01-01",
+      reference: "REF001",
+    },
+    {
+      id: 2,
+      patientName: "Foulen el Foulani2",
+      commandType: "Aligneur",
+      state: "En attente",
+      stateColor: "text-orange-500",
+      date: "2023-01-01",
+      reference: "REF001",
+    },
+    {
+      id: 3,
+      patientName: "Foulen el Foulani3",
+      commandType: "Aligneur",
+      state: "Annulée",
+      stateColor: "text-red-500",
+      date: "2023-01-01",
+      reference: "REF001",
+    },
+    {
+      id: 4,
+      patientName: "Foulen el Foulani4",
+      commandType: "Aligneur",
+      state: "Completer",
+      stateColor: "text-green-500",
+      date: "2023-01-01",
+      reference: "REF001",
+    },
+  ];
   
   return (
     <>

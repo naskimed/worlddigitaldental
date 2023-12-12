@@ -231,7 +231,7 @@ export default function CardSettings() {
                   className="block uppercase text-blueGray-600 text-xs font-bold mb-2"
                   htmlFor="telephoneNumber"
                 >
-                  NUMÉRO DE TÉLÉPHONE
+                  NUMÉRO DE TÉLÉPHONE FIXE (OPTIONNEL)
                 </label>
                 <input
                   type="text"
@@ -251,7 +251,7 @@ export default function CardSettings() {
                   className="block uppercase text-blueGray-600 text-xs font-bold mb-2"
                   htmlFor="workNumber"
                 >
-                  NUMÉRO DE TÉLÉPHONE FIXE :
+                  NUMÉRO DE TÉLÉPHONE  
                 </label>
                 <input
                   type="text"
