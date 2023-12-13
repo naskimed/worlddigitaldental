@@ -193,21 +193,21 @@ export default function Sidebar() {
                 <Link
                   className={
                     "text-xs uppercase py-3 font-bold block " +
-                    (isLinkActive("/admin/commandes_rejeter")
+                    (isLinkActive("/admin/cloturee")
                     ? "text-lightBlue-500 hover:text-lightBlue-600"
                     : "text-blueGray-700 hover:text-blueGray-500")
                   }
-                  to="/admin/commandes_rejeter"
+                  to="/admin/cloturee"
                 >
                   <i
                     className={
-                      "fas fa-question-circle mr-2 text-sm " +
-                      (isLinkActive("/admin/commandes_rejeter")
+                      "fas fa-check mr-2 text-sm " +
+                      (isLinkActive("/admin/cloturee")
                       ? "opacity-75"
                       : "text-blueGray-300") 
                     }
                   ></i>{" "}
-                  Commandes Rejeter
+                  Commandes Cloturer
                 </Link>
               </li>
 
@@ -215,21 +215,21 @@ export default function Sidebar() {
                 <Link
                   className={
                     "text-xs uppercase py-3 font-bold block " +
-                    (isLinkActive("/admin/commandes_ignorer")
+                    (isLinkActive("/admin/rejeter")
                     ? "text-lightBlue-500 hover:text-lightBlue-600"
                     : "text-blueGray-700 hover:text-blueGray-500")
                   }
-                  to="/admin/commandes_ignorer"
+                  to="/admin/rejeter"
                 >
                   <i
                     className={
                       "fas fa-times-circle mr-2 text-sm " +
-                      (isLinkActive("/admin/commandes_ignorer")
+                      (isLinkActive("/admin/rejeter")
                       ? "opacity-75"
                       : "text-blueGray-300") 
                     }
                   ></i>{" "}
-                  Commandes Ignorer
+                  Commandes Rejeter
                 </Link>
               </li>
 

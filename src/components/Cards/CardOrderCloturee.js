@@ -2,12 +2,8 @@
 import React,{useState} from "react";
 import { useHistory } from "react-router-dom";
 
-const ConfirmOrderbyUser = ({ order, onReject }) => {
+const OrderCloutreCard = ({ order, onDelete }) => {
 
-    const showPdf = () => {
-        // Replace 'your_pdf_url' with the actual URL of the PDF
-        window.open('your_pdf_url', '_blank');
-      };
 
     // to handle the confirm, reject and ignore actions
     const history = useHistory();
@@ -23,7 +19,7 @@ const ConfirmOrderbyUser = ({ order, onReject }) => {
         console.log("Order Ignored:", order);
 
         // Handle rejection logic
-        onReject(order);
+        onDelete(order);
       };
 
     
@@ -39,13 +35,6 @@ const ConfirmOrderbyUser = ({ order, onReject }) => {
             <p>Nom de patient: {order.patientName}</p>
             <p>Type: {order.type}</p>
             <p>Date: {order.date}</p>
-            <button
-              className="bg-blue-500 text-white px-4 py-2 mt-2 rounded"
-              onClick={handleAttach}
-              style={{ backgroundColor: "#14939C" }}
-            >
-              Attachez le PDF
-            </button>
 
             <button
               className="bg-blue-500 text-white px-4 py-2 mt-2 rounded"
@@ -68,10 +57,10 @@ const ConfirmOrderbyUser = ({ order, onReject }) => {
               onClick={handleReject}
             //   style={{ backgroundColor: "#14939C" }}
             >
-              Cancel
+              Delete
             </button>
           </div>
   );
 };
 
-export default ConfirmOrderbyUser;
+export default OrderCloutreCard;

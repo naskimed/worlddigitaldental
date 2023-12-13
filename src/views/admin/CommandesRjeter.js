@@ -2,9 +2,9 @@
 import React, { useState, useEffect } from "react";
 import 'assets/styles/OrderConfirmation.css';
 import { useLocation } from "react-router-dom";
-import ConfirmOrderbyUser from "components/Cards/CardOrderConfirmbyUser";
+import OrderRejetCard from "components/Cards/CardOrderRejeter";
 
-const ConfirmedByUser = ({ onConfirm, onReject }) => {
+const OrderCloture = ({ onConfirm, onReject }) => {
 
   const [activeLink, setActiveLink] = useState("");
   const [orders1, setOrders] = useState([]); // Just for now. we need to change orders1 ==> orders in the dynamic part
@@ -25,18 +25,10 @@ const ConfirmedByUser = ({ onConfirm, onReject }) => {
     fetchOrders();
   }, []); // Run this effect only once on component mount
 
-  const isLinkActive = (link) => {
-    return activeLink === link;
-  };
 
-  const handleConfirm = (order) => {
-    // Logic for confirming the order
-    console.log("Order confirmed:", order);
-  };
-
-  const handleReject = (order) => {
+  const handleDelete = (order) => {
     // Logic for rejecting the order
-    console.log("Order rejected:", order);
+    console.log("Order Deleted:", order);
   };
 
 
@@ -78,11 +70,10 @@ const ConfirmedByUser = ({ onConfirm, onReject }) => {
     <div className="relative flex flex-col min-w-0 break-words w-full mb-6">
       <div className="grid grid-cols-3 order-grid">
         {orders.map((order) => (
-          <ConfirmOrderbyUser
+          <OrderRejetCard
           key={order.id}
           order={order}
-          onConfirm={handleConfirm}
-          onReject={handleReject}
+          onReject={handleDelete}
         />
         ))}
       </div>
@@ -90,5 +81,4 @@ const ConfirmedByUser = ({ onConfirm, onReject }) => {
   );
 };
 
-export default ConfirmedByUser;
-
+export default OrderCloture;

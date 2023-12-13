@@ -31,7 +31,7 @@ export default function CardTable({ color }) {
       state: "En attente",
       stateColor: "text-orange-500",  
       date: "2023-01-01",
-      reference: "REF001",
+      reference: "xxxxx-xxxxx",
     },
     {
       id: 2,
@@ -40,7 +40,7 @@ export default function CardTable({ color }) {
       state: "En attente",
       stateColor: "text-orange-500",
       date: "2023-01-01",
-      reference: "REF001",
+      reference: "xxxxx-xxxxx",
     },
     {
       id: 3,
@@ -49,7 +49,7 @@ export default function CardTable({ color }) {
       state: "Annulée",
       stateColor: "text-red-500",
       date: "2023-01-01",
-      reference: "REF001",
+      reference: "xxxxx-xxxxx",
     },
     {
       id: 4,
@@ -58,7 +58,7 @@ export default function CardTable({ color }) {
       state: "Completer",
       stateColor: "text-green-500",
       date: "2023-01-01",
-      reference: "REF001",
+      reference: "xxxxx-xxxxx",
     },
   ];
   
@@ -129,7 +129,7 @@ export default function CardTable({ color }) {
                       : "bg-lightBlue-800 text-lightBlue-300 border-lightBlue-700")
                   }
                 >
-                  Date
+                  Date de creation
                 </th>
                 <th
                   className={
@@ -139,7 +139,7 @@ export default function CardTable({ color }) {
                       : "bg-lightBlue-800 text-lightBlue-300 border-lightBlue-700")
                   }
                 >
-                  Reference
+                  Reference (ID)
                 </th>
                 <th
                   className={
